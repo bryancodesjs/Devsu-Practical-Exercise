@@ -1,0 +1,359 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: "Poppins", sans-serif;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  font-size: 16px;
+  color: #545d78;
+}
+
+html {
+  padding: 0;
+  height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+.nav-link {
+  padding: 12px;
+  font-size: 1.3rem;
+  text-decoration: none;
+}
+.nav-logo {
+  width: 150px;
+}
+
+.bg-light {
+  background-color: #f4f6f9;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+.form-control {
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid lightgray;
+  padding: 8px 16px;
+}
+.form-control.invalid {
+  border-color: rgb(203, 22, 22);
+}
+.form-control.disabled {
+  pointer-events: none;
+  background-color: #f8f8fa;
+}
+.form-select {
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid lightgray !important;
+  padding: 8px 16px;
+}
+.form-select-sm {
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  /* padding: 0.8rem 0.5rem; */
+  border: 1px solid #333;
+  font-family: inherit;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-image: url("assets/images/chevron.svg");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 1em;
+  padding: 4px 12px !important;
+  min-width: 54px;
+}
+
+button, a.button {
+  text-decoration: none;
+  font-size: 16px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button.width-sm, a.button.width-sm {
+  width: 100px;
+}
+button.round, a.button.round {
+  background-color: #e9ecf3;
+  border: 1px solid #e9ecf3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+button.round:hover:not(.disabled), a.button.round:hover:not(.disabled) {
+  background-color: #dbdee5;
+  border-color: #dbdee5;
+}
+button.round.disabled, a.button.round.disabled {
+  opacity: 0.5;
+}
+button.primary, a.button.primary {
+  background-color: #4B66F9;
+  border: 1px solid #4B66F9;
+  color: white;
+  padding: 8px 16px;
+}
+button.primary:hover, a.button.primary:hover {
+  background-color: #3c54de;
+  box-shadow: 0px 2px 9px -4px #3c54de;
+}
+button.secondary, a.button.secondary {
+  background-color: #e9ecf3;
+  border: 1px solid #e9ecf3;
+  padding: 8px 16px;
+}
+button.secondary:hover, a.button.secondary:hover {
+  background-color: #dbdee5;
+  border-color: #dbdee5;
+}
+button.theme, a.button.theme {
+  background-color: #f9de4b;
+  border: 1px solid #f9de4b;
+  padding: 8px 16px;
+  color: black;
+}
+button.theme:hover, a.button.theme:hover {
+  background-color: #e6cf49;
+  border-color: #e6cf49;
+}
+button.theme:disabled, a.button.theme:disabled {
+  opacity: 0.5;
+}
+button:disabled, a.button:disabled {
+  cursor: not-allowed;
+}
+
+.card {
+  border-radius: 4px;
+  background-color: white;
+  padding: 16px;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  min-width: 100%;
+}
+table thead {
+  background-color: #f9fafc;
+}
+table th {
+  color: #424c61;
+}
+table th, table td {
+  min-width: 160px;
+  width: -moz-max-content;
+  width: max-content;
+  white-space: nowrap;
+  padding: 16px 24px;
+}
+table td.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex {
+  display: flex;
+}
+.flex-1 {
+  flex: 1;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.gap-1 {
+  gap: 16px;
+}
+.gap-half {
+  gap: 8px;
+}
+
+.between {
+  justify-content: space-between;
+}
+
+.center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.container {
+  padding: calc(4 * 16px);
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-danger {
+  color: rgb(203, 22, 22);
+}
+
+.responsive-row {
+  display: flex;
+  gap: 16px;
+}
+.responsive-row .form-group {
+  flex: 1;
+}
+
+@media screen and (max-width: 800px) {
+  .responsive-row {
+    flex-direction: column;
+  }
+  .responsive-row .form-group {
+    display: flex;
+    flex: 1;
+  }
+  .container {
+    padding: 16px;
+  }
+  .nav-logo {
+    width: 100px;
+  }
+  .flex-1-sm {
+    flex: 1;
+  }
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e9ecf2;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6e6e73;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.dropdown {
+  position: relative;
+}
+.dropdown-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #f8f8fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.dropdown-menu {
+  position: absolute;
+  background-color: white;
+  box-shadow: 9px 7px 13px -13px rgba(0, 0, 0, 0.431372549);
+  z-index: 1;
+  border-radius: 4px;
+  display: none;
+  overflow: hidden;
+}
+.dropdown-menu ul {
+  margin: 0;
+  padding: 0;
+}
+.dropdown-menu ul li {
+  list-style: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+.dropdown-menu ul li:hover {
+  background-color: #f4f6f9;
+}
+.dropdown:hover .dropdown-menu {
+  display: block !important;
+}
+
+.product-logo {
+  height: 40px;
+  width: 40px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #f8f8fa;
+}
+.product-logo img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  min-height: 100%;
+}
+
+.dialog {
+  display: none !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2901960784);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dialog .content {
+  background-color: white;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 360px;
+}
+.dialog .content-body, .dialog .content-footer {
+  padding: 16px;
+}
+.dialog .content .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 8px;
+  cursor: pointer;
+}
+.dialog.show {
+  display: flex !important;
+}
+
+hr {
+  margin: 0;
+}/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,180 @@
+<div class="bg-light h-100">
+  <div class="container">
+    <div class="flex column gap-1">
+      <h2>Productos</h2>
+      <!-- toolbar-->
+      <div class="flex between center gap-half">
+        <div class="form-group flex flex-1-sm">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Buscar"
+            (keyup)="filtrarPorNombre($event)"
+          />
+        </div>
+
+        <a class="button theme" routerLink="/agregar">Agregar</a>
+      </div>
+
+      <div class="card flex column gap-1">
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Logo</th>
+                <th>Nombre del producto</th>
+                <th>Descripción</th>
+                <th>Fecha de liberación</th>
+                <th>Fecha de reestructuración</th>
+                <th>Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let product of products
+                    | paginate
+                      : { itemsPerPage: itemsPerPage, currentPage: currentPage }
+                "
+              >
+                <td class="centered">
+                  <div class="product-logo">
+                    <img [src]="product.logo" alt="Logo de producto" />
+                  </div>
+                </td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.date_release | date }}</td>
+                <td>{{ product.date_revision | date }}</td>
+                <td class="centered">
+                  <div class="dropdown">
+                    <div class="dropdown-icon">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="24"
+                      >
+                        <path
+                          d="M12 3C10.9 3 10 3.9 10 5C10 6.1 10.9 7 12 7C13.1 7 14 6.1 14 5C14 3.9 13.1 3 12 3ZM12 17C10.9 17 10 17.9 10 19C10 20.1 10.9 21 12 21C13.1 21 14 20.1 14 19C14 17.9 13.1 17 12 17ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="dropdown-menu">
+                      <ul>
+                        <li (click)="editarProducto(product.id)">
+                          <div class="flex gap-half">
+                            <svg
+                              width="20"
+                              height="20"
+                              fill="currentColor"
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M12.8995 6.85431L17.1421 11.0969L7.24264 20.9964H3V16.7538L12.8995 6.85431ZM14.3137 5.44009L16.435 3.31877C16.8256 2.92825 17.4587 2.92825 17.8492 3.31877L20.6777 6.1472C21.0682 6.53772 21.0682 7.17089 20.6777 7.56141L18.5563 9.68273L14.3137 5.44009Z"
+                              ></path>
+                            </svg>
+                            <span>Editar</span>
+                          </div>
+                        </li>
+                        <li (click)="deleteProduct(product)">
+                          <div class="flex gap-half center">
+                            <svg
+                              width="20"
+                              height="20"
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                            >
+                              <path
+                                d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM18 8H6V20H18V8ZM13.4142 13.9997L15.182 15.7675L13.7678 17.1817L12 15.4139L10.2322 17.1817L8.81802 15.7675L10.5858 13.9997L8.81802 12.232L10.2322 10.8178L12 12.5855L13.7678 10.8178L15.182 12.232L13.4142 13.9997ZM9 4V6H15V4H9Z"
+                              ></path>
+                            </svg>
+                            <span>Eliminar</span>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="flex between center">
+          <h4>
+            {{ products.length }} resultado{{
+              products.length == 0 || products.length > 1 ? "s" : ""
+            }}
+          </h4>
+
+          <div class="flex between center gap-half">
+            <button
+              class="btn round"
+              (click)="previousPage()"
+              [disabled]="currentPage == 1"
+              id="previousPageBtn"
+            >
+              <svg
+                width="24"
+                height="24"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M10.8284 12.0007L15.7782 16.9504L14.364 18.3646L8 12.0007L14.364 5.63672L15.7782 7.05093L10.8284 12.0007Z"
+                ></path>
+              </svg>
+            </button>
+            <h5>Pagina: {{ currentPage }}</h5>
+            <button class="btn round" (click)="nextPage()" id="nextPageBtn">
+              <svg
+                width="24"
+                height="24"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M13.1714 12.0007L8.22168 7.05093L9.63589 5.63672L15.9999 12.0007L9.63589 18.3646L8.22168 16.9504L13.1714 12.0007Z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div class="form-group">
+            <select
+              class="form-select form-select-sm"
+              (change)="changeItemsPerPage($event)"
+            >
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal para confirmar eliminacion de producto -->
+<div class="dialog" [class.show]="showingModal">
+  <div class="content">
+    <div class="content-body">
+      <h4>
+        ¿Estas seguro de eliminar el producto {{ productForDelete.name }}?
+      </h4>
+    </div>
+    <hr />
+    <div class="content-footer">
+      <div class="flex justify-center center gap-half w-100">
+        <button class="secondary flex-1" (click)="closeModal()">
+          Cancelar
+        </button>
+        <button class="theme flex-1" (click)="confirmDelete()">
+          Confirmar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,110 @@
+<form
+  [formGroup]="productoForm"
+  class="flex column gap-1"
+  (ngSubmit)="submit()"
+>
+  <h2 class="text-center">Formulario de Registro</h2>
+
+  <div class="responsive-row">
+    <div class="form-group">
+      <label for="">ID</label>
+      <input
+        formControlName="id"
+        type="text"
+        class="form-control"
+        [class.invalid]="productoForm.get('id')?.invalid && formIsInvalid"
+        [class.disabled]="accion == 'editar'"
+      />
+      <label
+        class="text-danger"
+        *ngIf="productoForm.get('id')?.invalid && formIsInvalid"
+        ><small>ID no valido!</small></label
+      >
+    </div>
+    <div class="form-group">
+      <label for="">Nombre</label>
+      <input
+        formControlName="name"
+        type="text"
+        class="form-control"
+        [class.invalid]="productoForm.get('name')?.invalid && formIsInvalid"
+      />
+      <label
+        class="text-danger"
+        *ngIf="productoForm.get('name')?.invalid && formIsInvalid"
+        ><small>Nombre no valido</small></label
+      >
+    </div>
+  </div>
+
+  <div class="responsive-row">
+    <div class="form-group">
+      <label for="">Descripción</label>
+      <input
+        formControlName="description"
+        type="text"
+        class="form-control"
+        [class.invalid]="
+          productoForm.get('description')?.invalid && formIsInvalid
+        "
+      />
+      <label
+        class="text-danger"
+        *ngIf="productoForm.get('description')?.invalid && formIsInvalid"
+        ><small>Descripción no valida!</small></label
+      >
+    </div>
+    <div class="form-group">
+      <label for="">URL de Logo</label>
+      <input
+        formControlName="logo"
+        type="text"
+        class="form-control"
+        [class.invalid]="productoForm.get('logo')?.invalid && formIsInvalid"
+      />
+      <label
+        class="text-danger"
+        *ngIf="productoForm.get('logo')?.invalid && formIsInvalid"
+        ><small>URL de logo no valida!</small></label
+      >
+    </div>
+  </div>
+
+  <div class="responsive-row">
+    <div class="form-group">
+      <label for="">Fecha Liberación</label>
+      <input
+        formControlName="date_release"
+        type="date"
+        class="form-control"
+        [class.invalid]="!releaseDateIsValid && formIsInvalid"
+        (change)="isReleaseDateValid()"
+        id="dateReleaseInput"
+      />
+      <label class="text-danger" *ngIf="!releaseDateIsValid && formIsInvalid"
+        ><small>Fecha de liberación no valida!</small></label
+      >
+    </div>
+    <div class="form-group">
+      <label for="">Fecha Revisión</label>
+      <input
+        formControlName="date_revision"
+        type="date"
+        class="form-control disabled"
+        value="12/12/2022"
+        [disabled]="false"
+      />
+    </div>
+  </div>
+
+  <div class="flex justify-center center gap-half w-100">
+    <button
+      id="reiniciarBtn"
+      class="secondary width-sm"
+      (click)="resetForm($event)"
+    >
+      Reiniciar
+    </button>
+    <button id="submitBtn" class="theme width-sm" type="submit">Enviar</button>
+  </div>
+</form>
